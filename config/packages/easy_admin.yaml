@@ -1,0 +1,128 @@
+easy_admin:
+    site_name: 'Produits testés'
+    design:
+        brand_color: '#0072b9'
+        color_scheme: 'dark'
+        templates:
+            field_id: 'admin/fields/_id.html.twig'
+
+    list:
+        title: 'Liste des %%entity_label%%'
+        actions: 
+            - {name: show, icon: eye, label: Voir}
+            - {name: edit, icon: pencil, label: Editer}
+            - {name: delete, icon: trash, label: Supprimer}
+
+    entities:
+        Langue:
+            label: 'Langues'
+            class: App\Entity\Langue
+            list:
+                fields: 
+                    - {property: id, label: ID}
+                    - {property: nom, label: Langue}
+                    - {property: label, label: Code langue}
+                    - {property: urlImage, type: image, base_path: '/images/', label: 'Image', sortable: false}
+                    - {property: isActive, label: Publié}
+            form: 
+                fields: 
+                    - {property: id, label: ID}
+                    - {property: nom, label: Langue}
+                    - {property: label, label: Code langue}
+                    - {property: urlImage, label: 'URL image'}
+                    - {property: isActive, label: Publié}
+        Solution:
+            label: 'Solutions'
+            class: App\Entity\Solution
+            list:
+                fields: 
+                    - nom
+                    - isActive
+                    - {property: langue.urlImage, label: 'Langue',type: image, base_path: '/images/'}
+            form:
+                fields: 
+                    - nom
+                    - {property: isActive, label: 'Publié'}
+                    - {property: langue, label: 'Langue'}
+        Dangerosite:
+            label: 'Dangerosités'
+            class: App\Entity\Dangerosite
+            list:
+                fields: 
+                    - id
+                    - {property: typeDanger, label: 'Type de danger'}
+                    - {property: phraseRisque, label: 'Phrase de risque'}
+                    - {property: urlPicto, label: 'Pictogramme', type: image, base_path: '/images/'}
+                    - {property: isActive, label: 'Publié'}
+                    - {property: langue.label, label: 'Langue'}
+            edit:
+                fields: 
+                    - {property: typeDanger, label: 'Type de danger'}
+                    - {property: phraseRisque, label: 'Phrase de risque'}
+                    - {property: urlPicto}
+                    - {property: isActive, label: 'Publié'}
+                    - {property: Langue, label: 'Langue'}
+        ProduitTeste:
+            label: 'Produits testés'
+            class: App\Entity\ProduitTeste
+#templates:
+#field_id: 'admin/fields/_id.html.twig'
+            list:
+                fields: 
+                    - {property: id, label: ID}
+                    - {property: IUPAC, label: IUPAC}
+                    - {property: numeroCAS, label: 'N°CAS'}
+                    - {property: dangerosite.urlPicto, type: image, base_path: '/images/', label: 'Toxicité du produit'}
+                    - {property: solution, label: 'Solution recommandée'}
+                    - {property: isMelange, label: 'Mélange'}
+                    - {property: isTested, label: 'Testé'}
+                    - {property: isActive, label: 'Publié' }
+            form:
+                fields: 
+                    - {property: IUPAC, label: IUPAC}
+                    - {property: numeroCAS, label: 'Numéro CAS'}
+                    - {property: isMelange, label: 'Ce produit est un mélange'}
+                    - {property: isTested, label: 'A été testé'}
+                    - {property: isActive, label: 'Publier' }
+                    - {property: caracteristiques, label: 'Caractéristiques' }
+                    - {property: dangerosite, label: 'Toxicité'}
+                    - {property: solution, label: 'Solution recommandée'}
+        Caracteristique:
+            label: 'Caractéristiques'
+            class: App\Entity\Caracteristique
+            edit:
+                fields: []
+        Fichier:
+            label: 'Fichiers'
+            class: App\Entity\Fichier
+            edit:
+                fields: []
+        Melange:
+            label: 'Mélanges'
+            class: App\Entity\Melange
+        User:
+            label: 'Utilisateurs'
+            class: App\Entity\User
+            list:
+                fields:
+                    - {property: id, label: '#'}
+                    - {property: username, label: 'Utilisateur'}
+                    - {property: email, label: 'Email'}
+                    - {property: isActive, label: 'Actif'}
+                    - {property: role, label: 'Accès'}
+                    - {property: createdAt, label: 'Date de création', type_options: {widget: single_text}}
+                sort: ['username', 'ASC']
+            show:
+                fields:
+                    - {property: id, label: 'Id'}
+                    - {property: username, label: 'Utilisateur'}
+                    - {property: email, label: 'Email'}
+                    - {property: isActive, label: 'Actif'}
+                    - {property: role, label: 'Accès'}
+                    - {property: createdAt, label: 'Date de création'}
+            form:
+                fields:
+                    - {property: username, label: 'Utilisateur'}
+                    - {property: email, label: 'Email'}
+                    - {property: isActive, label: 'Actif'}
+                    - {property: role, label: 'Accès'}

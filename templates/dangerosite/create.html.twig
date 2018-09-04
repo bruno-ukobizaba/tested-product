@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une dangerosité{% endblock %}
+
+{% block body %}
+
+<h1>
+    {% if editMode %}
+        Modifier la dangerosité
+    {% else %}
+        Ajouter une dangerosité
+    {% endif %}
+</h1>
+
+    {{ form_start(formDangerosite) }}
+        {{ form_row(formDangerosite.typeDanger) }}
+        {{ form_row(formDangerosite.phraseRisque) }}
+        {{ form_row(formDangerosite.urlPicto) }}
+        {{ form_row(formDangerosite.isActive) }}
+        {{ form_row(formDangerosite.langue) }}
+        <button type="submit" class="btn btn-primary">
+            {% if editMode %}
+            Enregistrer les modifications
+            {% else %}
+                Ajouter une dangerosité
+            {% endif %}
+        </button>
+    {{ form_end(formDangerosite) }}
+{% endblock %}

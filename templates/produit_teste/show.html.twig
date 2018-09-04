@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Fiche du produit testé : {{ produitTeste.IUPAC }} {{ produitTeste.numeroCAS }}{% endblock %}
+
+{% block pageHeader %}Fiche du produit testé : {{ produitTeste.IUPAC }} {{ produitTeste.numeroCAS }}{% endblock %}
+
+{% block body %}
+<h1>Fiche du produit testé : {{ produitTeste.IUPAC }} {{ produitTeste.numeroCAS }}</h1>
+
+<table>
+		<caption>
+            Identification
+        </caption>
+
+			<tbody>
+				<tr>
+					<th>Nom IUPAC</th>
+					<th>Nom commercial</th>
+					<th>Numéro CAS</th>
+					<th>Substance pure</th>
+					<th>Toxicité</th>
+				</tr>
+				<tr>
+					<td>{{ produitTeste.IUPAC }}</td>
+					
+					<td>{% for caracteristique in produitTeste.caracteristiques %}
+						- {{ caracteristique.nomCommercial }}  - {{ caracteristique.langue.nom }}<br />
+                        {% endfor %}</td>
+					<td>{{ produitTeste.numeroCAS }}</td>
+					<td>{% if produitTeste.IsMelange == true %} 
+							Mélange
+							{% else %}
+							Oui
+						{% endif %}</td>
+					<td>{{ produitTeste.dangerosite.typeDanger }}</td>
+				</tr>
+			</tbody>
+	</table>
+
+
+{% endblock %}

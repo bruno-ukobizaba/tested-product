@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits testés{% endblock %}
+
+{% block pageHeader %}Liste des produits testés{% endblock %}
+
+{% block body %}
+
+<div id="product-wrapper">
+
+	<table>
+		<caption>
+			Identification
+		</caption>
+
+			<tbody>
+				<tr>
+					<th>Nom IUPAC</th>
+					<th>Nom commercial</th>
+					<th>Numéro CAS</th>
+					<th>Subastance pure</th>
+					<th>Toxicite</th>
+				</tr>
+				{% for produitTeste in produitTestes %}
+				<tr>
+					<td>{{ produitTeste.IUPAC }}</td>
+					
+					<td>{% for caracteristique in produitTeste.caracteristiques %}
+						- {{ caracteristique.nomCommercial }} <br />
+					{% endfor %}</td>
+					<td>{{ produitTeste.numeroCAS }}</td>
+					<td>{% if produitTeste.IsMelange == true %} 
+							Mélange
+							{% else %}
+							Oui
+						{% endif %}</td>
+					<td>{{ produitTeste.dangerosite.typeDanger }}</td>
+					<td><button class="btn btn-primary"><a href="{{ path('produit_teste_show', {'id': produitTeste.id }) }}">Voir</a></button></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+	</table>
+	
+
+
+	</div>
+{% endblock %}

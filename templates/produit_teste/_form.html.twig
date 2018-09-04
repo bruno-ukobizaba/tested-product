@@ -1,0 +1,29 @@
+{{ form_start(formProduitTeste)}}
+{{ form_errors(formProduitTeste) }}
+
+<div class="form-group">
+    {{ form_row(formProduitTeste.IUPAC) }}
+    {{ form_row(formProduitTeste.numeroCAS) }}
+    {{ form_row(formProduitTeste.isMelange) }}
+    {{ form_row(formProduitTeste.isTested) }}
+    {{ form_row(formProduitTeste.isActive) }}
+    {{ form_row(formProduitTeste.dangerosite) }}
+    {{ form_row(formProduitTeste.solution) }}
+</div>
+<div class="form-group">
+<ul class="tags">
+    {% for caracteristique in formProduitTeste.caracteristiques %}
+    <li>
+        {{ form_row(caracteristique.nomChimique) }} - 
+        {{ form_row(caracteristique.nomCommun) }} - 
+        {{ form_row(caracteristique.nomCommercial) }} - 
+        {{ form_row(caracteristique.description) }} - 
+        {{ form_row(caracteristique.produitTeste) }} - 
+        {{ form_row(caracteristique.langue) }}
+    </li>
+{% endfor %}
+</ul>
+</div>     
+
+<button type="submit" class="btn btn-success">Enregistrer</button>
+{{ form_end(formProduitTeste)}}

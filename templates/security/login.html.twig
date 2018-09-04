@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block pageHeader %}Login{% endblock %}
+{% block body %}
+
+<form action="{{ path('security_login') }}" method="post">
+        <div class="form-group">
+            <input type="text" name="_username" required class="form-control" placeholder="Saisissez votre nom d'utilisateur">
+        </div>
+        <div class="form-group">
+            <input type="password" name="_password" required class="form-control" placeholder="Saisissez votre mot de passe">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                Connexion <i class="fa fa-lock"></i>
+            </button>
+        </div>
+</form>
+
+
+{% endblock %}

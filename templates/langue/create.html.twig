@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une langue{% endblock %}
+
+{% block body %}
+<h1>{% if editMode %}
+        Modifier la langue
+    {% else %}
+        Ajouter une langue
+    {% endif %}
+</h1>
+    {{ form_start(formLang) }}
+        {{ form_row(formLang.nom) }}
+        {{ form_row(formLang.label) }}
+        {{ form_row(formLang.urlImage) }}
+        {{ form_row(formLang.isActive) }}
+        <button type="submit" class="btn btn-primary">
+        {% if editMode %}
+            Enregistrer les modifications
+        {% else %}
+            Ajouter une langue
+        {% endif %}        
+        </button>
+    {{ form_end(formLang) }}
+{% endblock %}

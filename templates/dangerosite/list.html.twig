@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des dangerosités et phrases de risques{% endblock %}
+{% block pageHeader %}Liste des dangerosités et phrases de risques{% endblock %}
+{% block body %}
+
+<table class="table table-stripped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Type de Danger</th>
+        <th scope="col">Phrase de risque</th>
+        <th scope="col">Pictrogramme</th>
+        <th scope="col">Active</th>
+        <th scope="col">Langue</th>
+        <th scope="col"><i class="fa fa-cogs"></i> Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for dangerosite in dangerosites %}
+      <tr>
+            <td>{{ dangerosite.typeDanger }}</td>
+            <td>{{ dangerosite.phraseRisque }}</td>
+            <td><img src="{{ asset('/images/'~ dangerosite.urlPicto) }}" alt="{{ dangerosite.phraseRisque }}" class="img-fluid mx-auto d-block" style="max-height: 50px"></td>
+            <td>{{ dangerosite.isActive }}</td>
+            <td><img src="{{ asset('/images/flag_'~ dangerosite.langue.label ~'.png') }}" alt="{{ dangerosite.langue.nom }}" class="img-fluid"></td>
+            <td>
+                <a href="{{ path('dangerosite_show', {'id': dangerosite.id}) }}" class="link_action"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="{{ path('dangerosite_edit', {'id': dangerosite.id}) }}" class="link_action"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                <a href="{{ path('dangerosite_delete', {'id': dangerosite.id}) }}" class="link_action"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
