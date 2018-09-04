@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Langue;
+use App\Entity\ProduitTeste;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,12 +39,12 @@ class Caracteristique
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProduitTeste", inversedBy="caracteristiques")
+     * @ORM\ManyToOne(targetEntity="ProduitTeste", inversedBy="caracteristiques")
      */
     private $produitTeste;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Langue", inversedBy="caracteristiques")
+     * @ORM\ManyToOne(targetEntity="Langue", inversedBy="caracteristiques")
      */
     private $langue;
 
