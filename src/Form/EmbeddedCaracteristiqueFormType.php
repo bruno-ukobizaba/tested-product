@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Caracteristique;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,7 @@ class EmbeddedCaracteristiqueFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Caracteristique::class
         ]);
     }
 }

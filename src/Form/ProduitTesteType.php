@@ -6,7 +6,9 @@ use App\Entity\Solution;
 use App\Entity\Dangerosite;
 use App\Entity\ProduitTeste;
 use App\Entity\Caracteristique;
+use App\Form\CaracteristiqueType;
 use Symfony\Component\Form\AbstractType;
+use App\Form\EmbeddedCaracteristiqueFormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -58,8 +60,8 @@ class ProduitTesteType extends AbstractType
             ->add('caracteristiques', CollectionType::class, [
                 'label' => 'Quelles sont les caractéristiques du produit ?',
                 'entry_type' => CaracteristiqueType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true
+                'allow_add' => true, 
+                'allow_delete' => true
             ])
         ;
     }
