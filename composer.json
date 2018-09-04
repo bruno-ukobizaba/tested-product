@@ -10,6 +10,7 @@
         "fortawesome/font-awesome": "^4.7",
         "friendsofphp/php-cs-fixer": "^2.12",
         "sensio/framework-extra-bundle": "^5.2",
+        "sensiolabs/security-checker": "^4.1",
         "symfony/asset": "^4.1",
         "symfony/console": "^4.1",
         "symfony/expression-language": "^4.1",
@@ -66,7 +67,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
