@@ -12,11 +12,11 @@
 </div>
 <div class="form-group">
 <ul class="tags">
-    {% for caracteristiqueForm in formProduitTeste.caracteristiques %}
+    {% for caracteristique in formProduitTeste.caracteristiques %}
     <li>
-        {{ form_errors(caracteristiqueForm) }}
-        {{ form_row(caracteristiqueForm.nomCommun) }}
-        {{ form_row(caracteristiqueForm.description) }}
+        {{ form_errors(caracteristique) }}
+        {{ form_row(caracteristique.nomCommun) }}
+        {{ form_row(caracteristique.description) }}
     </li>
 {% endfor %}
 </ul>

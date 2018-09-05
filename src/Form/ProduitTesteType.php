@@ -61,7 +61,8 @@ class ProduitTesteType extends AbstractType
                 'label' => 'Quelles sont les caractéristiques du produit ?',
                 'entry_type' => CaracteristiqueType::class,
                 'allow_add' => true, 
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false
             ])
         ;
     }

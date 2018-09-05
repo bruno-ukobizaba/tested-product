@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Langue;
 use App\Entity\ProduitTeste;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,12 +40,20 @@ class Caracteristique
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProduitTeste", inversedBy="caracteristiques")
+     * @ORM\ManyToOne(
+     * targetEntity="ProduitTeste", 
+     * inversedBy="caracteristiques"
+     * )
+     * @Assert\Valid()
      */
     private $produitTeste;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Langue", inversedBy="caracteristiques")
+     * @ORM\ManyToOne(
+     * targetEntity="Langue", 
+     * inversedBy="caracteristiques"
+     * )
+     * @Assert\Valid()
      */
     private $langue;
 

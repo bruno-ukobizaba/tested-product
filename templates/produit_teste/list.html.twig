@@ -8,12 +8,12 @@
 
 <div id="product-wrapper">
 
-	<table>
+	<table class="table table-stripped">
 		<caption>
 			Identification
 		</caption>
 
-			<tbody>
+			<thead>
 				<tr>
 					<th>Nom IUPAC</th>
 					<th>Nom commercial</th>
@@ -21,6 +21,8 @@
 					<th>Subastance pure</th>
 					<th>Toxicite</th>
 				</tr>
+				</thead>
+				<tbody>
 				{% for produitTeste in produitTestes %}
 				<tr>
 					<td>{{ produitTeste.IUPAC }}</td>

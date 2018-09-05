@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitTesteRepository")
@@ -54,17 +56,32 @@ class ProduitTeste
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Caracteristique", mappedBy="produitTeste")
+     * @ORM\OneToMany(
+     * targetEntity="Caracteristique",
+     * mappedBy="produitTeste",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $caracteristiques;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Melange", mappedBy="produitTeste")
+     * @ORM\OneToMany(
+     * targetEntity="Melange", 
+     * mappedBy="produitTeste",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $melanges;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Fichier", mappedBy="produitTeste")
+     * @ORM\OneToMany(
+     * targetEntity="Fichier", 
+     * mappedBy="produitTeste",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $fichiers;
 

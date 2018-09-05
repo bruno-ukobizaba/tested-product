@@ -9,9 +9,9 @@ easy_admin:
     list:
         title: 'Liste des %%entity_label%%'
         actions: 
-            - {name: show, icon: eye, label: Voir}
-            - {name: edit, icon: pencil, label: Editer}
-            - {name: delete, icon: trash, label: Supprimer}
+#            - {name: show, icon: eye, label: ''}
+            - {name: edit, icon: pencil, label: ''}
+            - {name: delete, icon: trash, label: ''}
 
     entities:
         Langue:
@@ -45,7 +45,7 @@ easy_admin:
                     - {property: isActive, label: 'Publié'}
                     - {property: langue, label: 'Langue'}
         Dangerosite:
-            label: 'Dangerosités'
+            label: 'Toxicités'
             class: App\Entity\Dangerosite
             list:
                 fields: 
@@ -77,21 +77,53 @@ easy_admin:
                     - {property: isMelange, label: 'Mélange'}
                     - {property: isTested, label: 'Testé'}
                     - {property: isActive, label: 'Publié' }
+            
+            view:
+                fields:
+                    - id
+                    - IUPAC
+                    - numeroCAS
+                    - isMelange
+                    - isTested
+                    - isActive
+                    - 
+                        property: caracteristiques
+                        label: Caractéristiques
+                        type: collection
+                        type_options:
+                            entry_type: App\Form\CaracteristiqueType
+                            allow_delete: true
+                            allow_add: true
+                            by_reference: false
             form:
                 fields: 
+                    -
+                        property: id
+                        type_options: {disabled: true}
                     - {property: IUPAC, label: IUPAC}
                     - {property: numeroCAS, label: 'Numéro CAS'}
                     - {property: isMelange, label: 'Ce produit est un mélange'}
                     - {property: isTested, label: 'A été testé'}
                     - {property: isActive, label: 'Publier' }
-                    - {property: caracteristiques, label: 'Caractéristiques' }
-                    - {property: dangerosite, label: 'Toxicité'}
-                    - {property: solution, label: 'Solution recommandée'}
-        Caracteristique:
-            label: 'Caractéristiques'
-            class: App\Entity\Caracteristique
-            edit:
-                fields: []
+                    - 
+                        property: dangerosite
+                        label: 'Toxicité'
+                    - 
+                        property: solution
+                        label: 'Solution recommandée'
+                    - 
+                        property: caracteristiques
+                        label: Caractéristiques
+                        type: collection
+                        type_options:
+                            entry_type: App\Form\CaracteristiqueType
+                            allow_delete: true
+                            allow_add: true
+                            by_reference: false
+            new:
+                fields: 
+                    - '-id'
+
         Fichier:
             label: 'Fichiers'
             class: App\Entity\Fichier
@@ -122,6 +154,9 @@ easy_admin:
                     - {property: createdAt, label: 'Date de création'}
             form:
                 fields:
+                    - 
+                        property: id
+                        type_options: {disabled: true}
                     - {property: username, label: 'Utilisateur'}
                     - {property: email, label: 'Email'}
                     - {property: isActive, label: 'Actif'}

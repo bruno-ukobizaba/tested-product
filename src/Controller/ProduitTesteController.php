@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\ProduitTeste;
 use App\Form\ProduitTesteType;
+use App\Entity\Caracteristique;
+use App\Form\CaracteristiqueType;
+use App\Form\EmbeddedCaracteristiqueType;
 use App\Repository\ProduitTesteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -85,11 +88,15 @@ class ProduitTesteController extends Controller
 	*@Route("/produits-testes/{id}", name="produit_teste_show")
 	*/	
 	public function show(ProduitTeste $produitTeste)
-    {
+    {   
+        if(!$produitTeste){
+            $produitTeste = new ProduitTeste();
+        }
+
+
         return $this->render('produit_teste/show.html.twig', [
             'produitTeste' => $produitTeste 
         ]);
     }
-	
 
 }
