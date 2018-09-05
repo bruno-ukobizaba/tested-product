@@ -29,7 +29,12 @@ class Solution
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProduitTeste", mappedBy="solution")
+     * @ORM\OneToMany(
+     * targetEntity="ProduitTeste", 
+     * mappedBy="solution",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $produitTestes;
 

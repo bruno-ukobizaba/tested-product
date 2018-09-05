@@ -39,7 +39,12 @@ class Dangerosite
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProduitTeste", mappedBy="dangerosite")
+     * @ORM\OneToMany(
+     * targetEntity="App\Entity\ProduitTeste", 
+     * mappedBy="dangerosite",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $produitTestes;
 

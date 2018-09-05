@@ -40,17 +40,32 @@ class Langue
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Caracteristique", mappedBy="langue")
+     * @ORM\OneToMany(
+     * targetEntity="App\Entity\Caracteristique", 
+     * mappedBy="langue",
+     * orphanRemoval=true,
+     * cascade={"persist"}     * 
+     * )
      */
     private $caracteristiques;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Dangerosite", mappedBy="langue")
+     * @ORM\OneToMany(
+     * targetEntity="App\Entity\Dangerosite", 
+     * mappedBy="langue",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $dangerosites;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Solution", mappedBy="langue")
+     * @ORM\OneToMany(
+     * targetEntity="App\Entity\Solution", 
+     * mappedBy="langue",
+     * orphanRemoval=true,
+     * cascade={"persist"}
+     * )
      */
     private $solutions;
 
