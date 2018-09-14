@@ -20,10 +20,10 @@ class CaracteristiqueType extends AbstractType
             ->add('nomCommun')
             ->add('nomCommercial')
             ->add('description', TextareaType::class)
-            ->add('produitTeste', EntityType::class, [
+            /*->add('produitTeste', EntityType::class, [
                 'class' => ProduitTeste::class,
                 'choice_label' => 'IUPAC'
-            ])
+            ])*/
             ->add('langue', EntityType::class, [
                 'class' => Langue::class,
                 'choice_label' => 'nom'

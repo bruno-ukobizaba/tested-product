@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Entity\Langue;
 use App\Entity\ProduitTeste;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CaracteristiqueRepository")
+ * @UniqueEntity(
+ * fields={"langue"},
+ * message="Les caractéristiques pour cette langue existent déjà"
+ * )
  */
 class Caracteristique
 {
@@ -135,6 +140,6 @@ class Caracteristique
     }
 
     public function __toString(){
-        return (string) $this->getNomCommercial();
+        return (string) $this->getNomCommun().' - '.$this->getNomCommercial().' - '.$this->getNomChimique();
     }
 }

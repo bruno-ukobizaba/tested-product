@@ -13,12 +13,14 @@ easy_admin:
             - {name: show, icon: eye, label: ''}
             - {name: edit, icon: pencil, label: ''}
             - {name: delete, icon: trash, label: ''}
+            - {name: new, icon: plus, label: 'Ajouter'}
 
     entities:
         Langue:
             label: 'Langues'
             class: App\Entity\Langue
             list:
+                title: 'Liste des langues'
                 fields: 
                     - {property: id, label: ID}
                     - {property: nom, label: Langue}
@@ -26,29 +28,50 @@ easy_admin:
                     - {property: urlImage, type: image, base_path: '/images/', label: 'Image', sortable: false}
                     - {property: isActive, label: 'Publié'}
             form: 
+                title: 'Ajouter / modifier une langue'
                 fields: 
-                    - {property: id, label: ID}
+                    - {property: nom, label: Langue}
+                    - {property: label, label: Code langue, type: language}
+                    - {property: urlImage, label: 'URL image'}
+                    - {property: isActive, label: 'Publié'}
+            show:
+                title: 'Afficher une langue'
+                fields:
                     - {property: nom, label: Langue}
                     - {property: label, label: Code langue}
                     - {property: urlImage, label: 'URL image'}
                     - {property: isActive, label: 'Publié'}
+                    - {property: solutions, label: Solutions }
+                    - {property: dangerosites, label: Toxicités }
+        
         Solution:
             label: 'Solutions'
             class: App\Entity\Solution
             list:
+                title: 'Liste des solutions'
                 fields: 
                     - nom
+                    - {property: langue.urlImage, label: 'Langue',type: image, base_path: '/images/', css_class: text-center }
                     - isActive
-                    - {property: langue.urlImage, label: 'Langue',type: image, base_path: '/images/'}
+            show:
+                title: 'Afficher la solution (%%entity_id%%)'
+                fields: 
+                    - id
+                    - nom 
+                    - {property: isActive, label: Publiée }
+                    - {property: langue.nom, label: Langue }
             form:
+                title: 'Ajouter / modifier une solution'
                 fields: 
                     - nom
-                    - {property: isActive, label: 'Publié'}
                     - {property: langue, label: 'Langue'}
+                    - {property: isActive, label: 'Publié'}
+
         Dangerosite:
             label: 'Toxicités'
             class: App\Entity\Dangerosite
             list:
+                title: 'Liste des toxicités'
                 fields: 
                     - id
                     - {property: typeDanger, label: 'Type de danger'}
@@ -56,13 +79,23 @@ easy_admin:
                     - {property: urlPicto, label: 'Pictogramme', type: image, base_path: '/images/'}
                     - {property: isActive, label: 'Publié'}
                     - {property: langue.label, label: 'Langue'}
-            edit:
+            show:
+                title: Fiche de toxicité
+                fields: 
+                    - id 
+                    - typeDanger
+                    - phraseRisque
+                    - urlPicto
+                    - {property: langue.nom, label: Langue}
+                    - isActive
+            form:
+                title: 'Ajouter / Modifier une toxicité'
                 fields: 
                     - {property: typeDanger, label: 'Type de danger'}
                     - {property: phraseRisque, label: 'Phrase de risque'}
                     - {property: urlPicto}
+                    - {property: langue, label: 'Langue'}
                     - {property: isActive, label: 'Publié'}
-                    - {property: Langue, label: 'Langue'}
         ProduitTeste:
             label: 'Produits testés'
             class: App\Entity\ProduitTeste
@@ -72,14 +105,14 @@ easy_admin:
                     - {property: id, label: ID}
                     - {property: IUPAC, label: IUPAC}
                     - {property: numeroCAS, label: 'N°CAS'}
-                    - {property: dangerosite.urlPicto, type: image, base_path: '/images/', label: 'Toxicité du produit'}
-                    - {property: solution, label: 'Solution recommandée'}
+                    - {property: dangerosite.phraseRisque, label: 'Toxicité du produit', css_class: text-center}
+                    - {property: solution, label: 'Solution recommandée', css_class: text-center}
                     - {property: isMelange, label: 'Mélange'}
                     - {property: isTested, label: 'Testé'}
                     - {property: isActive, label: 'Publié' }
             
             show:
-                title: 'Produit testé #%%entity_id%%'
+                title: 'Fiche du produit testé #%%entity_id%%'
                 fields:
                     - id
                     - IUPAC
@@ -90,25 +123,17 @@ easy_admin:
                     - 
                         property: caracteristiques
                         label: Caractéristiques
-                        type: collection
-                        type_options:
-                            entry_type: App\Form\Caracteristique
-                            multiple: true
-                            expanded: true
-                    -
-                        property: fichiers
-                        label: Fichiers
-                        type: collection
-                        type_options:
-                            entry_type: App\Form\Fichier
-                            multiple: true
-                            expanded: true
+                        type_options: {raw: true}
+                        #type: association
+                        #fieldType: entity
+                        #dataType: association
+                        #virtual: true
+                        #template: "@EasyAdmin/default/field_association.html.twig"
+                    - { property: fichiers, label: Fichiers }
             form:
                 title: 'Éditer le produit #%%entity_id%%'
                 fields: 
-                    -
-                        property: id
-                        type_options: {disabled: true}
+                    #- {property: id, type_options: {disabled: true}}
                     - {property: IUPAC, label: IUPAC}
                     - {property: numeroCAS, label: 'Numéro CAS'}
                     - {property: isMelange, label: 'Ce produit est un mélange'}
@@ -125,6 +150,7 @@ easy_admin:
                             allow_delete: true
                             allow_add: true
                             by_reference: false
+                            entry_options: { label: false }
                     -
                         property: fichiers
                         label: Fichiers
@@ -134,6 +160,7 @@ easy_admin:
                             allow_delete: true
                             allow_add: true
                             by_reference: false
+                            entry_options: { label: false }
             new:
                 title: Ajouter un nouveau produit
                 fields: 
@@ -142,12 +169,14 @@ easy_admin:
         Melange:
             label: 'Mélanges'
             class: App\Entity\Melange
+
         User:
             label: 'Utilisateurs'
             class: App\Entity\User
             list:
+                title: 'Liste des utilisateurs'
                 fields:
-                    - {property: id, label: '#'}
+                    - id
                     - {property: username, label: 'Utilisateur'}
                     - {property: email, label: 'Email'}
                     - {property: isActive, label: 'Publié'}
@@ -161,7 +190,7 @@ easy_admin:
                 fields:
                     - {property: id, label: 'Id'}
                     - {property: username, label: 'Utilisateur'}
-                    - {property: email, label: 'Email'}
+                    - {property: email, label: 'Email', type: email}
                     - {property: isActive, label: 'Publié'}
                     - {property: role, label: 'Accès'}
                     - 
@@ -169,11 +198,10 @@ easy_admin:
                         label: 'Date de création'
                         type_options: {widget: single_text}
             form:
+                title: 'Ajouter / modifier un utilisateur'
+                help: 'Rôles: USER, ADMIN, SUPER_ADMIN'
                 fields:
-                    - 
-                        property: id
-                        type_options: {disabled: true}
                     - {property: username, label: 'Utilisateur'}
-                    - {property: email, label: 'Email'}
+                    - {property: email, label: 'Email', type: email}
+                    - {property: role, label: 'Rôle'}
                     - {property: isActive, label: 'Publié'}
-                    - {property: role, label: 'Accès'}

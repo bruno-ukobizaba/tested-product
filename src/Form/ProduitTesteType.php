@@ -60,6 +60,7 @@ class ProduitTesteType extends AbstractType
             ->add('caracteristiques', CollectionType::class, [
                 'label' => 'Quelles sont les caractéristiques du produit ?',
                 'entry_type' => CaracteristiqueType::class,
+                'entry_options' => array('label' => false),
                 'allow_add' => true, 
                 'allow_delete' => true,
                 'by_reference' => false
