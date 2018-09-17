@@ -76,7 +76,7 @@ easy_admin:
                     - id
                     - {property: typeDanger, label: 'Type de danger'}
                     - {property: phraseRisque, label: 'Phrase de risque'}
-                    - {property: urlPicto, label: 'Pictogramme', type: image, base_path: '/images/'}
+                    - {property: urlPicto, label: 'Pictogramme', type: image, base_path: /images/}
                     - {property: isActive, label: 'Publié'}
                     - {property: langue.label, label: 'Langue'}
             show:
@@ -93,7 +93,8 @@ easy_admin:
                 fields: 
                     - {property: typeDanger, label: 'Type de danger'}
                     - {property: phraseRisque, label: 'Phrase de risque'}
-                    - {property: urlPicto}
+                    - { property: 'imageFile', type: 'file' }
+                    #- {property: urlPicto}
                     - {property: langue, label: 'Langue'}
                     - {property: isActive, label: 'Publié'}
         ProduitTeste:

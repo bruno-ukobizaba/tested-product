@@ -14,7 +14,7 @@
         "symfony/asset": "^4.1",
         "symfony/console": "^4.1",
         "symfony/expression-language": "^4.1",
-        "symfony/flex": "^1.0",
+        "symfony/flex": "^1.1",
         "symfony/form": "^4.1",
         "symfony/framework-bundle": "^4.1",
         "symfony/lts": "^4@dev",
@@ -30,7 +30,8 @@
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.1",
         "twig/extensions": "^1.5",
-        "twitter/bootstrap": "^4.1"
+        "twitter/bootstrap": "^4.1",
+        "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
