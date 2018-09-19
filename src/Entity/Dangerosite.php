@@ -34,7 +34,7 @@ class Dangerosite
     private $phraseRisque;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="urlPicto")
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="urlPicto")
      * @var File
      */
     private $imageFile;
@@ -112,7 +112,7 @@ class Dangerosite
         return $this->urlPicto;
     }
 
-    public function setUrlPicto(string $urlPicto): self
+    public function setUrlPicto(?string $urlPicto): self
     {
         $this->urlPicto = $urlPicto;
 
@@ -185,7 +185,7 @@ class Dangerosite
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @param File|UploadedFile $image
      */
     public function setImageFile(File $image = null): void
     {
